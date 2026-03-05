@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Data access/" />
+  <Folder Name="/Data access/Script DBA/">
+    <File Path="dbo Product.sql" />
+    <File Path="dbo Usuario.sql" />
+    <File Path="SPcreateproduct.sql" />
+    <File Path="spcreateuser.sql" />
+  </Folder>
+  <Folder Name="/Devtest/">
+    <Project Path="Devtest/Devtest.csproj" Id="db4b915b-077d-41e0-8c97-84f9ec89bcc1" />
+  </Folder>
+  <Folder Name="/entities/">
+    <Project Path="Entities-DTO2/Entities.DTO2.csproj" />
+  </Folder>
+  <Folder Name="/WebAPP/">
+    <Project Path="WebApp/WebApp.csproj" Id="bdfb5d0a-ced7-4e3e-9c3e-34fdd7c67dba" />
+  </Folder>
+  <Project Path="AppCore/AppCore.csproj" Id="04232772-9722-4c84-93c7-af133388c554" />
+  <Project Path="DataAccess/DataAccess.csproj" Id="88c265a9-1d7d-49eb-bc13-c90a02daa41d" />
+  <Project Path="WebAPI/WebAPI.csproj" Id="1fd82ad5-1a33-4ba0-ac72-fe039c03dded" />
+</Solution>
