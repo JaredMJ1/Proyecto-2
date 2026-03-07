@@ -5,24 +5,75 @@
 
 <script src="~/js/Pages/UserViewController.js"></script>
 
+
 <h1>usuarios del sistema</h1>
 
-<table id="tblUsers" class="bs-docs-section">
- <div class="row">
-        <legend>Listado</legend>
+<div class="row">
+    <legend>Listado</legend>
 
-        <div class="col-lg-12">
-            <table id="tblUsers" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>nombre</th>
-                        <th>apellido</th>
-                        <th>fecha de nacimiento</th>
-                        <th>estado</th>
-                        <th>fecha creacion</th>
-                    </tr>
-                </thead>
-            </table>
+    <div class="col-lg-12">
+        <table id="tblUsers" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>fecha de nacimiento</th>
+                    <th>estado</th>
+                    <th>fecha creacion</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="bs-component">
+                <form>
+                    <fieldset>
+                        <legend>Edicion</legend>
+                        <div class="form-group">
+                            <label form="txtId" class="form-label mt-4">ID</label>
+                            <input id="txtId" type="number" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtName" class="form-label mt-4">Nombre</label>
+                            <input id="txtName" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtLastName" class="form-label mt-4">Apellido</label>
+                            <input id="txtLastName" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtEmail" class="form-label mt-4">Email</label>
+                            <input id="txtEmail" type="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtBirthDate" class="form-label mt-4">Fecha nacimiento</label>
+                            <input id="txtBirthDate" type="date" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtStatus" class="form-label mt-4">Estado</label>
+                            <input id="txtStatus" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtPhone" class="form-label mt-4">Numero celular</label>
+                            <input id="txtPhone" type="number" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label form="txtPwd" class="form-label mt-4">contraseña</label>
+                            <input id="txtPwd" type="password" class="form-control" />
+                        </div>
+                    </fieldset>
+                </form>
+                <br />
+                <button id="btnCreate" class="btn btn-primary btn-xs" type="button">Crear</button>
+                <button id="btnUpdate" class="btn btn-secondary btn-xs" type="button">Actualizar</button>
+                <button id="btnDelete" class="btn btn-danger btn-xs" type="button">Eliminar</button>
+            </div>
         </div>
     </div>

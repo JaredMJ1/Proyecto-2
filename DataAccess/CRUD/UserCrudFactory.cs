@@ -35,13 +35,14 @@ namespace DataAccess.CRUD
                 ProcedureName = "dbo.usp_UpdateUsuario"
             };
 
-            op.AddIntParam("@P_ID", user.Id);
-            op.AddStringParam("@P_NAME", user.Name);
-            op.AddStringParam("@P_LAST_NAME", user.Lastname);
-            op.AddStringParam("@P_EMAIL", user.Email);
-            op.AddStringParam("@P_PHONE", user.Phone);
-            op.AddStringParam("@P_PASSWORD", user.PasswordHash);
-            op.AddDateTimeParam("@P_BIRTH_DATE", user.Birthday);
+            op.AddIntParam("@Id", user.Id);
+            op.AddStringParam("@Status", user.Status);
+            op.AddStringParam("@Name", user.Name);
+            op.AddStringParam("@LastName", user.Lastname);
+            op.AddStringParam("@Email", user.Email);
+            op.AddStringParam("@Phone", user.Phone);
+            op.AddStringParam("@Password", user.PasswordHash);
+            op.AddDateTimeParam("@BirthDate", user.Birthday);
 
             dao.ExecuteProcedure(op);
         }
@@ -53,7 +54,7 @@ namespace DataAccess.CRUD
                 ProcedureName = "dbo.usp_DeleteUsuario"
             };
 
-            op.AddIntParam("@P_ID", id);
+            op.AddIntParam("@Id", id);
 
             dao.ExecuteProcedure(op);
         }

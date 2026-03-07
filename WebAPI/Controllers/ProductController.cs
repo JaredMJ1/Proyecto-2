@@ -12,9 +12,10 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-       
+
         [HttpGet]
-        public ActionResult GetAll()
+        [Route("RetrieveAll")]
+        public ActionResult RetrieveAll()
         {
             try
             {

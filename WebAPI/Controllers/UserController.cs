@@ -75,14 +75,14 @@ namespace WebAPI.Controllers
             }
         }
 
-    
-        [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id)
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] UsuarioDTO u)
         {
             try
             {
                 var um = new UserManager();
-                um.Delete(id);
+                um.Delete(u.Id);
                 return Ok();
             }
             catch (Exception ex)
