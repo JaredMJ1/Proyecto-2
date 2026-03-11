@@ -50,7 +50,7 @@ namespace DataAccess.CRUD
                 ProcedureName = "dbo.usp_DeleteProduct"
             };
 
-            op.AddIntParam("@Id", id);
+            op.AddIntParam("@ProductId", id);
 
             dao.ExecuteProcedure(op);
         }

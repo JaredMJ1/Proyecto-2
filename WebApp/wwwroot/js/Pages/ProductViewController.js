@@ -6,7 +6,23 @@
     var ca = new ControlActions();
 
     this.InitView = function () {
+
         this.LoadTable();
+
+        $("#btnCreate").click(function () {
+            var vc = new ProductViewController();
+            vc.Create();
+        });
+
+        $("#btnUpdate").click(function () {
+            var vc = new ProductViewController();
+            vc.Update();
+        });
+
+        $("#btnDelete").click(function () {
+            var vc = new ProductViewController();
+            vc.Delete();
+        });
     }
 
     this.LoadTable = function () {
@@ -47,21 +63,22 @@
         var productDTO = {};
 
         productDTO.id = 0;
-        productDTO.created = "2026-01-01";
-        productDTO.updated = "2026-01-01";
 
         productDTO.name = $("#txtName").val();
         productDTO.description = $("#txtDescription").val();
         productDTO.category = $("#txtCategory").val();
-        productDTO.quantity = $("#txtQuantity").val();
-        productDTO.price = $("#txtPrice").val();
+        productDTO.quantity = parseInt($("#txtQuantity").val());
+        productDTO.price = parseFloat($("#txtPrice").val());
         productDTO.status = $("#txtStatus").val();
 
         var ca = new ControlActions();
-        var urlEndPoint = this.API_ControllerName + "/Create";
+        var urlEndPoint = this.API_ControllerName;
 
         ca.PostToAPI(urlEndPoint, productDTO, function () {
+
             $("#tblProducts").DataTable().ajax.reload();
+
+            alert("Producto creado correctamente");
         });
     }
 
@@ -69,45 +86,51 @@
 
         var productDTO = {};
 
-        productDTO.created = "2026-01-01";
-        productDTO.updated = "2026-01-01";
-
         productDTO.id = $("#txtId").val();
         productDTO.name = $("#txtName").val();
         productDTO.description = $("#txtDescription").val();
         productDTO.category = $("#txtCategory").val();
-        productDTO.quantity = $("#txtQuantity").val();
-        productDTO.price = $("#txtPrice").val();
+        productDTO.quantity = parseInt($("#txtQuantity").val());
+        productDTO.price = parseFloat($("#txtPrice").val());
         productDTO.status = $("#txtStatus").val();
 
         var ca = new ControlActions();
-        var urlEndPoint = this.API_ControllerName + "/Update";
+        var urlEndPoint = this.API_ControllerName;
 
         ca.PutToAPI(urlEndPoint, productDTO, function () {
+
             $("#tblProducts").DataTable().ajax.reload();
+
+            alert("Producto actualizado");
         });
     }
 
     this.Delete = function () {
 
-        var productDTO = {};
+        var id = $("#txtId").val();
 
-        productDTO.created = "2026-01-01";
-        productDTO.updated = "2026-01-01";
-
-        productDTO.id = $("#txtId").val();
-        productDTO.name = $("#txtName").val();
-        productDTO.description = $("#txtDescription").val();
-        productDTO.category = $("#txtCategory").val();
-        productDTO.quantity = $("#txtQuantity").val();
-        productDTO.price = $("#txtPrice").val();
-        productDTO.status = $("#txtStatus").val();
+        if (id == "" || id == 0) {
+            alert("Seleccione un producto primero");
+            return;
+        }
 
         var ca = new ControlActions();
-        var urlEndPoint = this.API_ControllerName + "/Delete";
+        var urlEndPoint = this.API_ControllerName + "/" + id;
 
-        ca.DeleteToAPI(urlEndPoint, productDTO, function () {
+        ca.DeleteToAPI(urlEndPoint, null, function () {
+
+            alert("Producto eliminado");
+
             $("#tblProducts").DataTable().ajax.reload();
+
+            $("#txtId").val("");
+            $("#txtName").val("");
+            $("#txtDescription").val("");
+            $("#txtCategory").val("");
+            $("#txtQuantity").val("");
+            $("#txtPrice").val("");
+            $("#txtStatus").val("");
+
         });
     }
 }
