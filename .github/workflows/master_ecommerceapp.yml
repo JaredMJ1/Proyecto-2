@@ -1,65 +1,66 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - EcommerceApp
+name: Build and deploy ASP.Net Core app to Azure Web App - ecommerce-web
 
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Restore dependencies
+        run: dotnet restore ./eCommerce/WebApp/WebApp.csproj
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      - name: Build
+        run: dotnet build ./eCommerce/WebApp/WebApp.csproj --configuration Release --no-restore
 
-      - name: Upload artifact for deployment job
+      - name: Publish
+        run: dotnet publish ./eCommerce/WebApp/WebApp.csproj -c Release -o ./publish
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: webapp
+          path: ./publish
 
   deploy:
     runs-on: windows-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
-      
+          name: webapp
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F14E054F0D404C1DBD6A0A55B21F77EE }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BB093454D3DC4C7BB0137E903F0D7A91 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1DE79B0CCAE04FAD9C8A71B660A7CF21 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2594576798B54650B5F92B033599BA91 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B98543663AEB415D97985F43B55BBC36 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B4FC9A46138C4558AAE04605755569FB }}
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'EcommerceApp'
+          app-name: 'ecommerce-web'
           slot-name: 'Production'
           package: .
-          
