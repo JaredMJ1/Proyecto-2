@@ -24,13 +24,13 @@ jobs:
           dotnet-version: '10.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./eCommerce/WebApp/WebApp.csproj
+        run: dotnet restore ./WebApp/WebApp.csproj
 
       - name: Build
-        run: dotnet build ./eCommerce/WebApp/WebApp.csproj --configuration Release --no-restore
+        run: dotnet build ./WebApp/WebApp.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./eCommerce/WebApp/WebApp.csproj -c Release -o ./publish
+        run: dotnet publish ./WebApp/WebApp.csproj -c Release -o ./publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
