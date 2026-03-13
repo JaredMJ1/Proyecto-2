@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - WebApi
+name: Build and deploy ASP.Net Core app to Azure Web App - ecommerce-api
 
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -23,11 +23,11 @@ jobs:
         with:
           dotnet-version: '10.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Build API
+        run: dotnet build ./eCommerce/WebAPI/WebAPI.csproj --configuration Release
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      - name: Publish API
+        run: dotnet publish ./eCommerce/WebAPI/WebAPI.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,15 +51,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2704159E3E564D53A56C3FF7B5627FC8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8C5C08E166484B92BA2DBDBC5B4C1455 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2B6D8594F14645A5A1E9461B9E680C18 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3A628AF4AB1D4651B7BF547A1989D723 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DD841C50A6CD46B3BC36B8111D1A0198 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_ED80E6F6964F44DA8A6BC65E1128727B }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'WebApi'
+          app-name: 'ecommerce-api'
           slot-name: 'Production'
           package: .
-          
