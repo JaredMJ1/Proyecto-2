@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             try
             {
                 var pm = new ProductManager();
-                var result = pm.RetrieveById(id);
+                var result = pm.RetrieveById(id);   
                 return Ok(result);
             }
             catch (Exception ex)
