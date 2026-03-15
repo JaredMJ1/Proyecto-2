@@ -58,8 +58,12 @@ function UserViewController() {
             $('#txtPhone').val(userDTO.phone);
             $('#txtStatus').val(userDTO.status);
 
-            var onlyDate = userDTO.birthday.split("T");
-            $('#txtBirthDate').val(onlyDate[0]);
+            if (userDTO.birthday) {
+                var onlyDate = userDTO.birthday.split("T");
+                $('#txtBirthDate').val(onlyDate[0]);
+            } else {
+                $('#txtBirthDate').val("");
+            }
         });
     }
 
@@ -135,8 +139,6 @@ function UserViewController() {
         });
     }
 }
-
-
 
 $(document).ready(function () {
     var vc = new UserViewController();
