@@ -1,6 +1,6 @@
 ﻿function ControlActions() {
 	// Ruta base del API en Azure
-	this.URL_API = API_BASE_URL + "/api/";
+	this.URL_API = "https://ecommerce-api-jared-axf5e0ebbrf5gae0.canadacentral-01.azurewebsites.net/api/";
 
 	this.GetUrlApiService = function (service) {
 		return this.URL_API + service;
